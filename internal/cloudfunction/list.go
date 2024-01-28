@@ -2,7 +2,6 @@ package cloudfunction
 
 import (
 	"context"
-	"fmt"
 	"log"
 
 	functionspb "cloud.google.com/go/functions/apiv2/functionspb"
@@ -20,7 +19,6 @@ func IfFunctionExists(ctx context.Context, functionName string) bool {
 	it := client.ListFunctions(ctx, req)
 	for {
 		resp, err := it.Next()
-		fmt.Println("found")
 		if err == iterator.Done {
 			log.Println("Finished iterating through functions...")
 			break
