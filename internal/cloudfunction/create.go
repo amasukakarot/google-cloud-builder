@@ -3,11 +3,9 @@ package cloudfunction
 import (
 	"cloud.google.com/go/functions/apiv2/functionspb"
 	"context"
-	"fmt"
 )
 
-func CreateCloudFunction() {
-	ctx := context.Background()
+func CreateCloudFunction(ctx context.Context) {
 
 	client := createClient(ctx)
 	defer client.Close()
@@ -19,7 +17,6 @@ func CreateCloudFunction() {
 	}
 
 	op, err := client.CreateFunction(ctx, req)
-	fmt.Println("Creating CloudFunction...")
 	if err != nil {
 		panic(err)
 	}
