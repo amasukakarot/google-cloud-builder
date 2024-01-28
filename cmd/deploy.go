@@ -22,7 +22,7 @@ var DeployCmd = &cobra.Command{
 		functionExists := cloudfunction.IfFunctionExists(ctx, "projects/groovy-iris-412518/locations/europe-west2/functions/my-gcb-function-970601")
 		if functionExists {
 			log.Println("Updating cloud function...")
-			cloudfunction.UpdateCloudFunction()
+			cloudfunction.UpdateCloudFunction(ctx, "projects/groovy-iris-412518/locations/europe-west2/functions/my-gcb-function-970601")
 		} else {
 			log.Println("Creating cloud function...")
 			start := time.Now()

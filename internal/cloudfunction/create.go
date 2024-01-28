@@ -12,7 +12,7 @@ func CreateCloudFunction(ctx context.Context) {
 
 	req := &functionspb.CreateFunctionRequest{
 		Parent:     "projects/groovy-iris-412518/locations/europe-west2",
-		Function:   buildFunctionRequest(),
+		Function:   buildFunctionRequest(), //todo: abstract this , get config from file
 		FunctionId: "my-gcb-function-970601",
 	}
 
