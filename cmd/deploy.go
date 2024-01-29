@@ -17,8 +17,9 @@ var DeployCmd = &cobra.Command{
 	Short: "A brief description of your commandss",
 	Long:  ``,
 	Run: func(cmd *cobra.Command, args []string) {
-		log.Println("Deploy called...")
+
 		ctx := context.Background()
+
 		functionExists := cloudfunction.IfFunctionExists(ctx, "projects/groovy-iris-412518/locations/europe-west2/functions/my-gcb-function-970601")
 		if functionExists {
 			log.Println("Updating cloud function...")

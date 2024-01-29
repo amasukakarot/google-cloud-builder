@@ -1,0 +1,17 @@
+gcp:
+  projectId: "project-id"
+  location: "europe-west2"
+function:
+  functionName: "my-test-function"
+  functionId: ""
+  runtime: "python312"
+  entrypoint: "hello_world"
+  bucketName: "gcb-functions"
+  availableCpu: 1
+  availableMemory: "256M"
+  minInstanceCount: 0
+  maxInstanceCount: 1
+  serviceAccountEmail: "gcb-dev@groovy-iris-412518.iam.gserviceaccount.com"
+
+
+

@@ -5,6 +5,7 @@ package cmd
 
 import (
 	"fmt"
+	"github.com/amasukakarot/google-cloud-builder/internal/helper"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -63,7 +64,7 @@ func initConfig() {
 		// Search config in home directory with name ".google-cloud-builder" (without extension).
 		viper.AddConfigPath(home)
 		viper.SetConfigType("yaml")
-		viper.SetConfigName(".google-cloud-builder")
+		viper.SetConfigName(".values")
 	}
 
 	viper.AutomaticEnv() // read in environment variables that match
@@ -72,4 +73,5 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
 	}
+	helper.SetupConfig()
 }
