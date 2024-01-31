@@ -7,6 +7,37 @@ Current capability:
 * Update a gen2 Cloud Function - source = GCS bucket
 
 
+# config
+
+``gcp:
+  projectId: "groovy-iris-412518"
+  location: "europe-west2"
+function:
+  - functionName: "my-test-function"
+    functionDescription: "my-function-description1"
+    runtime: "python312"
+    entrypoint: "hello_world"
+    bucketName: "gcb-functions"
+    sourceFile: "hello_world_function"
+    availableCpu: 1
+    availableMemory: "256M"
+    minInstanceCount: 0
+    maxInstanceCount: 1
+    serviceAccountEmail: "gcb-dev@groovy-iris-412518.iam.gserviceaccount.com"
+
+  - functionName: "my-test-function2"
+    functionDescription: "my-function-description2"
+    runtime: "python312"
+    entrypoint: "hello_world"
+    bucketName: "gcb-functions"
+    sourceFile: "hello_world_function"
+    availableCpu: 1
+    availableMemory: "256M"
+    minInstanceCount: 0
+    maxInstanceCount: 1
+    serviceAccountEmail: "gcb-dev@groovy-iris-412518.iam.gserviceaccount.com" ``
+
+    
 
 # todo
 
