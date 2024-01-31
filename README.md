@@ -9,7 +9,8 @@ Current capability:
 
 # config
 
-```gcp:
+```
+gcp:
   projectId: "groovy-iris-412518"
   location: "europe-west2"
 function:
@@ -23,7 +24,7 @@ function:
     availableMemory: "256M"
     minInstanceCount: 0
     maxInstanceCount: 1
-    serviceAccountEmail: "gcb-dev@groovy-iris-412518.iam.gserviceaccount.com"
+    serviceAccountEmail: "example@project.iam.gserviceaccount.com"
 
   - functionName: "my-test-function2"
     functionDescription: "my-function-description2"
@@ -35,7 +36,8 @@ function:
     availableMemory: "256M"
     minInstanceCount: 0
     maxInstanceCount: 1
-    serviceAccountEmail: "gcb-dev@groovy-iris-412518.iam.gserviceaccount.com" ```
+    serviceAccountEmail: "example@project.iam.gserviceaccount.com"
+```
 
     
 
