@@ -1,4 +1,4 @@
-package helper
+package config
 
 import (
 	"fmt"
@@ -6,9 +6,9 @@ import (
 	"log"
 )
 
-type Config struct {
-	Project      GCPInfo        `mapstructure:"gcp"`
-	FunctionInfo []FunctionInfo `mapstructure:"function"`
+type Values struct {
+	Project  GCPInfo    `mapstructure:"gcp"`
+	Function []Function `mapstructure:"function"`
 }
 
 type GCPInfo struct {
@@ -16,7 +16,7 @@ type GCPInfo struct {
 	Location     string `mapstructure:"location"`
 }
 
-type FunctionInfo struct {
+type Function struct {
 	FunctionName        string `mapstructure:"functionName"`
 	FunctionDescription string `mapstructure:"functionDescription"`
 	Runtime             string `mapstructure:"runtime"`
@@ -30,12 +30,12 @@ type FunctionInfo struct {
 	ServiceAccountEmail string `mapstructure:"serviceAccountEmail"`
 }
 
-var FunctionConfig Config
+var FunctionData Values
 
-func SetupConfig() {
+func InitConfig() {
 	log.Println("Converting config into struct...")
-	err := viper.Unmarshal(&FunctionConfig)
-	fmt.Println(FunctionConfig)
+	err := viper.Unmarshal(&FunctionData)
+	fmt.Println(FunctionData)
 	if err != nil {
 		panic(err)
 	}

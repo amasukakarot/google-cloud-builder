@@ -4,7 +4,7 @@ import (
 	"cloud.google.com/go/functions/apiv2/functionspb"
 	"context"
 	"fmt"
-	"github.com/amasukakarot/google-cloud-builder/internal/helper"
+	"github.com/amasukakarot/google-cloud-builder/internal/config"
 	"google.golang.org/api/iterator"
 	"log"
 	"strings"
@@ -17,9 +17,9 @@ func StartDeployment(ctx context.Context) {
 	//if function exists, update
 	//if function doeesn't exist, create
 
-	projectId := helper.FunctionConfig.Project.GCPProjectId
-	location := helper.FunctionConfig.Project.Location
-	for _, function := range helper.FunctionConfig.FunctionInfo {
+	projectId := config.FunctionData.Project.GCPProjectId
+	location := config.FunctionData.Project.Location
+	for _, function := range config.FunctionData.Function {
 		if IfFunctionExists(ctx, function, projectId, location) {
 			log.Println("Updating cloud function...")
 			UpdateCloudFunction(ctx, function, projectId, location)
@@ -33,7 +33,7 @@ func StartDeployment(ctx context.Context) {
 	}
 }
 
-func CreateCloudFunction(ctx context.Context, function helper.FunctionInfo, projectId string, location string) {
+func CreateCloudFunction(ctx context.Context, function config.Function, projectId string, location string) {
 
 	client := createClient(ctx)
 	defer client.Close()
@@ -57,7 +57,7 @@ func CreateCloudFunction(ctx context.Context, function helper.FunctionInfo, proj
 	_ = resp
 }
 
-func buildFunctionRequest(function helper.FunctionInfo, projectId string, location string) *functionspb.Function {
+func buildFunctionRequest(function config.Function, projectId string, location string) *functionspb.Function {
 
 	functionName := function.FunctionName
 	functionDescription := function.FunctionDescription
@@ -73,7 +73,7 @@ func buildFunctionRequest(function helper.FunctionInfo, projectId string, locati
 	return functionReq
 }
 
-func createBuildConfig(function helper.FunctionInfo) *functionspb.BuildConfig {
+func createBuildConfig(function config.Function) *functionspb.BuildConfig {
 	runtime := function.Runtime
 	entrypoint := function.Entrypoint
 	buildConfigReq := &functionspb.BuildConfig{
@@ -112,7 +112,7 @@ func getEnvironmentVariables() map[string]string {
 	return envVars
 }
 
-func createServiceConfig(function helper.FunctionInfo) *functionspb.ServiceConfig {
+func createServiceConfig(function config.Function) *functionspb.ServiceConfig {
 	serviceConfig := &functionspb.ServiceConfig{
 		//VpcConnector:               "",
 		AvailableMemory:  function.AvailableMemory,
@@ -127,7 +127,7 @@ func createServiceConfig(function helper.FunctionInfo) *functionspb.ServiceConfi
 	return serviceConfig
 }
 
-func UpdateCloudFunction(ctx context.Context, function helper.FunctionInfo, projectId string, location string) {
+func UpdateCloudFunction(ctx context.Context, function config.Function, projectId string, location string) {
 
 	functionName := fmt.Sprintf("projects/%v/locations/%v/functions/%v", projectId, location, function.FunctionName)
 	log.Printf("Updating %v ", functionName)
@@ -154,7 +154,7 @@ func UpdateCloudFunction(ctx context.Context, function helper.FunctionInfo, proj
 	log.Printf("Function %v updated!", functionName)
 }
 
-func IfFunctionExists(ctx context.Context, function helper.FunctionInfo, projectId string, location string) bool {
+func IfFunctionExists(ctx context.Context, function config.Function, projectId string, location string) bool {
 
 	client := createClient(ctx)
 	defer client.Close()

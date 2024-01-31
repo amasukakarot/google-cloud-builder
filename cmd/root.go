@@ -5,7 +5,7 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/amasukakarot/google-cloud-builder/internal/helper"
+	"github.com/amasukakarot/google-cloud-builder/internal/config"
 	"os"
 
 	"github.com/spf13/cobra"
@@ -73,5 +73,5 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Fprintln(os.Stderr, "Using config file:", viper.ConfigFileUsed())
 	}
-	helper.SetupConfig()
+	config.InitConfig()
 }
