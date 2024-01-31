@@ -1,11 +1,15 @@
 # google-cloud-builder
 
-A cli program built using Cobra, Viper and the Google Go Cloud Client Library to create resources in a GCP project. 
+A cli program built using **Cobra**, **Viper** and the **Google Go Cloud Client Library** to create resources in a GCP project. 
 
 ### Features
-* Create n number of Gen2 Cloud Functions using a GCS bucket as the source of the function.
-* Update n number of Gen2 Cloud Functions using a GCS bucket as the source of the function.
+* Create **N** number of **Gen2 Cloud Functions** using a GCS bucket as the source of the function.
+* Update **N** number of **Gen2 Cloud Functions** using a GCS bucket as the source of the function.
 
+
+### Commands
+
+```google-cloud-builder deploy --config=values.yaml```
 
 ### config
 
